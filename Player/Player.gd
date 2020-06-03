@@ -15,6 +15,8 @@ var velocity = Vector2.ZERO
 # the $ sing is a shorthand to getting access to a node in the three
 # that is part of the same scene 
 onready var animationPlayer = $AnimationPlayer
+onready var animationTree = $AnimationTree
+onready var animationState = animationTree.get("parameters/playback")
 
 func _physics_process(delta):
 	match state:
@@ -34,13 +36,12 @@ func move_state(delta):
 	input_vector = input_vector.normalized()
 	
 	if input_vector != Vector2.ZERO: 
-		if input_vector.x > 0:
-			animationPlayer.play("RunRight")
-		else:
-			animationPlayer.play("RunLeft")
+		animationTree.set("parameters/Idle/blend_position", input_vector)
+		animationTree.set("parameters/Run/blend_position", input_vector)
+		animationState.travel("Run")
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
-		animationPlayer.play("IdleRight") 
+		animationState.travel("Idle") 
 		velocity =  velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	velocity = move_and_slide(velocity)
