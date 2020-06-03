@@ -38,7 +38,7 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 320, 180 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="DirtPathTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
