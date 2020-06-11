@@ -71,3 +71,9 @@ position = Vector2( 98.6768, 95.4888 )
 
 [node name="Grass2" parent="YSort/Grass" instance=ExtResource( 5 )]
 position = Vector2( 143.204, 94.734 )
+
+[node name="Grass3" parent="YSort/Grass" instance=ExtResource( 5 )]
+position = Vector2( 79.6916, 94.3357 )
+
+[node name="Grass4" parent="YSort/Grass" instance=ExtResource( 5 )]
+position = Vector2( 161.086, 95.0168 )
