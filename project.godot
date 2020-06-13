@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=230
+window/size/width=320
 window/size/height=180
 window/size/fullscreen=true
 window/size/test_width=1280
@@ -100,6 +100,7 @@ roll={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="PlayerHurtbox"
 2d_physics/layer_4="EnemyHurtbox"
+2d_physics/layer_5="Enemy"
 
 [rendering]
 
