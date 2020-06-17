@@ -48,6 +48,7 @@ script = ExtResource( 4 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "Fly"
+frame = 1
 playing = true
 offset = Vector2( 0, -12 )
 
@@ -67,3 +68,4 @@ shape = SubResource( 8 )
 [node name="Stats" parent="." instance=ExtResource( 5 )]
 max_health = 2
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
