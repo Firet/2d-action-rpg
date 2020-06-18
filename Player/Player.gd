@@ -13,7 +13,7 @@ enum {
 
 var state = MOVE
 var velocity = Vector2.ZERO
-var roll_vector = Vector2.LEFT
+var roll_vector = Vector2.DOWN
 # the $ sing is a shorthand to getting access to a node in the three
 # that is part of the same scene 
 onready var animationPlayer = $AnimationPlayer
