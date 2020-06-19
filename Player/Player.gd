@@ -14,6 +14,11 @@ enum {
 var state = MOVE
 var velocity = Vector2.ZERO
 var roll_vector = Vector2.DOWN
+# Because playerStats is a singleton global variable
+# I can access everywhere, but its a good practice 
+# to create a stats variable
+var stats = PlayerStats
+
 # the $ sing is a shorthand to getting access to a node in the three
 # that is part of the same scene 
 onready var animationPlayer = $AnimationPlayer
@@ -22,6 +27,8 @@ onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
 
 func _ready():
+	# Connect player to "no health" signal if its succeed then remove player
+	self.stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
 	swordHitbox.knockback_vector = roll_vector
 
@@ -86,4 +93,8 @@ func roll_animation_finished():
 	state = MOVE
 
 func attack_animation_finished():
-	state = MOVE	
+	state = MOVE
+
+
+func _on_Hurtbox_area_entered(area):
+	stats.health -= 1
