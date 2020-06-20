@@ -25,6 +25,7 @@ onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 onready var swordHitbox = $HitboxPivot/SwordHitbox
+onready var hurtbox = $Hurtbox
 
 func _ready():
 	# Connect player to "no health" signal if its succeed then remove player
@@ -95,6 +96,8 @@ func roll_animation_finished():
 func attack_animation_finished():
 	state = MOVE
 
-
 func _on_Hurtbox_area_entered(area):
 	stats.health -= 1
+	# When the player is hit is become invinsible for 0.5 secs
+	hurtbox.start_invincibility(0.5)
+	hurtbox.createHitEffect()
