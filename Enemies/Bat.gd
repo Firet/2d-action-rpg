@@ -4,7 +4,7 @@ const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 
 export var ACCELERATION = 300
 export var MAX_SPEED = 50
-# Bat has low friction because is in the air, 
+# Bat has low friction because it's in the air, 
 # 200 is a low number compared to the player's friction
 export var FRICTION = 200
 
@@ -22,6 +22,7 @@ onready var sprite = $AnimatedSprite
 onready var stats = $Stats
 onready var playerDetectionZone = $PlayerDetectionZone
 onready var hurtbox = $Hurtbox
+onready var softCollision = $SoftCollision
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
@@ -50,8 +51,11 @@ func _physics_process(delta):
 				state = IDLE
 				
 			sprite.flip_h = velocity.x < 0
-
-
+	
+	# 400 is some value that push each bat that overlaps other soft collision area
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * 400
+		
 	velocity = move_and_slide(velocity)
 		
 func seek_player():
