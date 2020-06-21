@@ -37,10 +37,10 @@
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Sprite" parent="."]
+position = Vector2( 160, 90 )
 texture = ExtResource( 3 )
-centered = false
 region_enabled = true
-region_rect = Rect2( 0, 0, 320, 180 )
+region_rect = Rect2( 0, 0, 784, 400 )
 
 [node name="DirtPathTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -48,10 +48,18 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -65520, 0, 0, -65519, 0, 2, 16, 0, 65536, 17, 0, 65538, 65552, 0, 65536, 65553, 0, 65538, 131088, 0, 65536, 131089, 0, 65538, 196624, 0, 65536, 196625, 0, 65538, 327679, 0, 0, 262144, 0, 1, 262145, 0, 1, 262146, 0, 1, 262147, 0, 1, 262148, 0, 1, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 1, 262153, 0, 1, 262154, 0, 1, 262155, 0, 1, 262156, 0, 1, 262157, 0, 1, 262158, 0, 1, 262159, 0, 1, 262160, 0, 131078, 262161, 0, 131077, 262162, 0, 1, 262163, 0, 1, 262164, 0, 2, 393215, 0, 131072, 327680, 0, 131073, 327681, 0, 131073, 327682, 0, 131073, 327683, 0, 131073, 327684, 0, 131073, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 65542, 327688, 0, 65541, 327689, 0, 131073, 327690, 0, 131073, 327691, 0, 131073, 327692, 0, 131073, 327693, 0, 131073, 327694, 0, 131073, 327695, 0, 131073, 327696, 0, 131073, 327697, 0, 131073, 327698, 0, 131073, 327699, 0, 131073, 327700, 0, 131074, 393223, 0, 65536, 393224, 0, 65538, 458759, 0, 65536, 458760, 0, 65538, 524295, 0, 65536, 524296, 0, 65538, 589831, 0, 65536, 589832, 0, 65538, 655367, 0, 65536, 655368, 0, 65538, 720903, 0, 131072, 720904, 0, 131074 )
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 113.441, 63.8305 )
+current = true
+smoothing_enabled = true
+
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 113.441, 63.8305 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="YSort/Player"]
+remote_path = NodePath("../../../Camera2D")
 
 [node name="Bushes" type="YSort" parent="YSort"]
 
@@ -104,4 +112,6 @@ position = Vector2( 37.0229, 162.586 )
 [node name="Bat3" parent="YSort" instance=ExtResource( 6 )]
 position = Vector2( 201.639, 165.158 )
 
-[node name="HealthUI" parent="." instance=ExtResource( 7 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 7 )]
