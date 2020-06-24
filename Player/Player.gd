@@ -28,6 +28,11 @@ onready var swordHitbox = $HitboxPivot/SwordHitbox
 onready var hurtbox = $Hurtbox
 
 func _ready():
+	# Randomize could be anywhere in the project
+	# it helps to make seeds random 
+	# for example makes the bats moves anywhere from game to game
+	randomize()
+	
 	# Connect player to "no health" signal if its succeed then remove player
 	self.stats.connect("no_health", self, "queue_free")
 	animationTree.active = true
