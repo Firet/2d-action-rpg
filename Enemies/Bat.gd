@@ -32,6 +32,9 @@ onready var wanderController = $WanderController
 
 func _ready():
 	pick_random_state([IDLE, WANDER])
+	# When a bat spawns in it's starting animation frame is randomized 
+	# This makes it so that all the bats aren't in sync with eachother
+	sprite.frame = rand_range(0, 4)
 
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
