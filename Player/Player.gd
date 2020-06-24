@@ -44,10 +44,10 @@ func _physics_process(delta):
 			move_state(delta)
 
 		ROLL: 
-			roll_state(delta)
+			roll_state()
 
 		ATTACK: 
-			attack_state(delta)
+			attack_state()
 
 func move_state(delta):
 	var input_vector = Vector2.ZERO
@@ -76,14 +76,14 @@ func move_state(delta):
 	if Input.is_action_just_pressed("roll"):
 		state = ROLL
 
-func roll_state(delta):
+func roll_state():
 	# While rolling increase velocity
 	velocity = roll_vector * ROLL_SPEED
 	animationState.travel("Roll")
 	move()
 
 # warning-ignore:unused_argument
-func attack_state(delta):
+func attack_state():
 	velocity = Vector2.ZERO
 	animationState.travel("Attack")
 
@@ -101,7 +101,7 @@ func roll_animation_finished():
 func attack_animation_finished():
 	state = MOVE
 
-func _on_Hurtbox_area_entered(area):
+func _on_Hurtbox_area_entered(_area):
 	stats.health -= 1
 	# When the player is hit is become invinsible for 0.5 secs
 	hurtbox.start_invincibility(0.5)
