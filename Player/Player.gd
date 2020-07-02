@@ -104,8 +104,8 @@ func roll_animation_finished():
 func attack_animation_finished():
 	state = MOVE
 
-func _on_Hurtbox_area_entered(_area):
-	stats.health -= 1
+func _on_Hurtbox_area_entered(area):
+	stats.health -= area.damage
 	# When the player is hit is become invinsible for 0.5 secs
 	# 0.5 is a custom value
 	hurtbox.start_invincibility(0.5)
