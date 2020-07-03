@@ -7,6 +7,7 @@ const HitEffect = preload("res://Effects/HitEffect.tscn")
 var invincible = false setget set_invincible
 
 onready var timer = $Timer
+onready var collisionShape = $CollisionShape2D
 
 signal invincibility_started
 signal invincibility_ended
@@ -34,11 +35,11 @@ func _on_Timer_timeout():
 
 # Deactivating hurtbox when the player is invencible
 func _on_Hurtbox_invincibility_started():
-	# It can't set monitorable = false 
+	# Cannot assign disabled = true 
 	# in the middle of the physics process.
 	# Because of that I use set_defered
-	set_deferred("monitorable", false)
+	collisionShape.set_deferred("disabled", true)
 	
 # Activating hurtbox again when the player isn't invencible
 func _on_Hurtbox_invincibility_ended():
-	monitorable = true
+	collisionShape.disabled = false
